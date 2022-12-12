@@ -1,8 +1,23 @@
 import React, { Component, useState, useEffect } from 'react';
+import {
+  getWeekStartDate,
+  generateWeekRange,
+  months,
+} from '../../utils/dateUtils.js';
 
 import './header.scss';
 
-const Header = ({ setCurrentDate, currentDate }) => {
+const Header = ({ setCurrentDate, currentDate, weekDates }) => {
+  const [modal, toggleModal] = useState({ showModal: true });
+  const showMonths = () =>
+    weekDates[0].getMonth() === weekDates[weekDates.length - 1].getMonth()
+      ? months[weekDates[0].getMonth()].substr(0, 3)
+      : months[weekDates[0].getMonth()]
+          .substr(0, 3)
+          .concat(
+            ' - ',
+            months[weekDates[weekDates.length - 1].getMonth()].substr(0, 3)
+          );
   return (
     <header className="header">
       <button className="button create-event-btn">
@@ -37,7 +52,7 @@ const Header = ({ setCurrentDate, currentDate }) => {
         >
           <i className="fas fa-chevron-right"></i>
         </button>
-        <span className="navigation__displayed-month"></span>
+        <span className="navigation__displayed-month">{showMonths()}</span>
       </div>
     </header>
   );

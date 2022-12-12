@@ -11,7 +11,11 @@ const App = () => {
   const weekDates = generateWeekRange(getWeekStartDate(currentDate));
   return (
     <>
-      <Header setCurrentDate={setCurrentDate} currentDate={currentDate} />
+      <Header
+        setCurrentDate={setCurrentDate}
+        currentDate={currentDate}
+        weekDates={weekDates}
+      />
       <Calendar weekDates={weekDates} />
     </>
   );
