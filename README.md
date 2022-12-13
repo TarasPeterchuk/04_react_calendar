@@ -1,6 +1,6 @@
-# 04_react_calendar
+# Calendar - react project
 
-#### [Site link](https://harmonious-centaur-cde4e5.netlify.app/)
+### [Site link](https://harmonious-centaur-cde4e5.netlify.app/)
 
 Main features:
 
