@@ -20,7 +20,7 @@ const Event = ({
     <div style={eventStyle} className="event">
       <button
         onClick={() => deleteEvent(id).then(() => fetchEvents())}
-        className="event__delete-btn"
+        className="delete-event-btn"
       >
         +
       </button>

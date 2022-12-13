@@ -14,19 +14,6 @@
     white-space: nowrap;
     margin-bottom: 8px;
   }
-  &__delete-btn {
-    margin-left: auto;
-    transform: rotate(45deg) scale(2);
-    outline: none;
-    border: none;
-    cursor: pointer;
-    border-radius: 50%;
-    width: 24px;
-    height: 24px;
-    background: transparent;
-    color: white;
-  }
-
   &:hover {
     font-weight: bold;
     background-color: red;
@@ -36,4 +23,11 @@
 .delete-event-btn {
   cursor: pointer;
   border: none;
+  transform: rotate(45deg) scale(2);
+  outline: none;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  background: transparent;
+  color: white;
 }
