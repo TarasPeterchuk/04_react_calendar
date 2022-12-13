@@ -7,8 +7,8 @@ import {
 
 import './header.scss';
 
-const Header = ({ setCurrentDate, currentDate, weekDates }) => {
-  const [modal, toggleModal] = useState({ showModal: true });
+const Header = ({ setAppState, weekDates, appState }) => {
+  const { currentDate } = appState;
   const showMonths = () =>
     weekDates[0].getMonth() === weekDates[weekDates.length - 1].getMonth()
       ? months[weekDates[0].getMonth()].substr(0, 3)
@@ -20,13 +20,18 @@ const Header = ({ setCurrentDate, currentDate, weekDates }) => {
           );
   return (
     <header className="header">
-      <button className="button create-event-btn">
+      <button
+        onClick={() => {
+          setAppState({ ...appState, showModal: true });
+        }}
+        className="button create-event-btn"
+      >
         <i className="fas fa-plus create-event-btn__icon"></i>Create
       </button>
       <div className="navigation">
         <button
           onClick={() => {
-            setCurrentDate(new Date());
+            setAppState({ ...appState, currentDate: new Date() });
           }}
           className="navigation__today-btn button"
         >
@@ -34,9 +39,12 @@ const Header = ({ setCurrentDate, currentDate, weekDates }) => {
         </button>
         <button
           onClick={() => {
-            setCurrentDate(
-              new Date(currentDate.setDate(currentDate.getDate() - 7))
-            );
+            setAppState({
+              ...appState,
+              currentDate: new Date(
+                currentDate.setDate(currentDate.getDate() - 7)
+              ),
+            });
           }}
           className="icon-button navigation__nav-icon"
         >
@@ -44,9 +52,12 @@ const Header = ({ setCurrentDate, currentDate, weekDates }) => {
         </button>
         <button
           onClick={() => {
-            setCurrentDate(
-              new Date(currentDate.setDate(currentDate.getDate() + 7))
-            );
+            setAppState({
+              ...appState,
+              currentDate: new Date(
+                currentDate.setDate(currentDate.getDate() + 7)
+              ),
+            });
           }}
           className="icon-button navigation__nav-icon"
         >
