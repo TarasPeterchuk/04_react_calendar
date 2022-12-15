@@ -61,14 +61,18 @@
   }
 
   &__day-number {
+    line-height: 1.5;
+    text-align: center;
+    width: 36px;
     font-size: 22px;
+    // opacity: 1 !important;
   }
 
   &__day-number_active {
     color: white;
-    opacity: 1 !important;
+    // opacity: 1 !important;
     background-color: cornflowerblue;
-    border-radius: 8px;
+    border-radius: 18px;
   }
 }
 

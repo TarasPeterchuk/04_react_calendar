@@ -23,7 +23,13 @@ const Event = ({
       <div
         style={eventStyle}
         className="event"
-        onClick={() => setAppState({ ...appState, showDeleteModal: true })}
+        onClick={(evet) => {
+          setAppState({
+            ...appState,
+            clickCoordinates: { xCoord: evet.pageX, yCoord: evet.pageY },
+            showDeleteModal: true,
+          });
+        }}
       >
         <div className="event__title">{title}</div>
         <div className="event__time">{time}</div>

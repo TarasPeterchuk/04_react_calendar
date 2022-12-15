@@ -1,5 +1,4 @@
 import React from 'react';
-
 import './modalDelete.scss';
 
 const ModalDelete = ({
@@ -9,18 +8,21 @@ const ModalDelete = ({
   deleteEvent,
   id,
 }) => {
+  const { clickCoordinates } = appState;
+  console.log(clickCoordinates);
   return (
-    <div className="modal-delete overlay-delete">
-      <div className="modal-delete__content">
+    <div
+      className="modal-delete overlay-delete"
+      onClick={() => {
+        setAppState({ ...appState, showDeleteModal: false });
+      }}
+    >
+      <div
+        style={{ top: clickCoordinates.yCoord, left: clickCoordinates.xCoord }}
+        className="modal-delete__content"
+        onClick={(event) => event.stopPropagation()}
+      >
         <div className="delete-event">
-          <button
-            onClick={() => {
-              setAppState({ ...appState, showDeleteModal: false });
-            }}
-            className="delete-event__close-btn"
-          >
-            +
-          </button>
           <button
             type="submit"
             className="delete-event__btn"

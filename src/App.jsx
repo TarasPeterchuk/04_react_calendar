@@ -11,6 +11,7 @@ const App = () => {
     currentDate: new Date(),
     showModal: false,
     showDeleteModal: false,
+    clickCoordinates: {},
     events: [],
   });
   const { events, currentDate, showModal } = appState;
