@@ -1,9 +1,7 @@
-import React, { Component, useState, useEffect } from 'react';
-
+import React from 'react';
 import Navigation from './../navigation/Navigation';
 import Week from '../week/Week';
 import Sidebar from '../sidebar/Sidebar';
-
 import './calendar.scss';
 
 const Calendar = ({
@@ -12,10 +10,16 @@ const Calendar = ({
   events,
   deleteEvent,
   fetchEvents,
+  currentDate,
+  appState,
 }) => {
   return (
     <section className="calendar">
-      <Navigation weekDates={weekDates} toggleModal={setAppState} />
+      <Navigation
+        weekDates={weekDates}
+        toggleModal={setAppState}
+        currentDate={currentDate}
+      />
       <div className="calendar__body">
         <div className="calendar__week-container">
           <Sidebar />
@@ -24,6 +28,9 @@ const Calendar = ({
             events={events}
             deleteEvent={deleteEvent}
             fetchEvents={fetchEvents}
+            currentDate={currentDate}
+            appState={appState}
+            setAppState={setAppState}
           />
         </div>
       </div>

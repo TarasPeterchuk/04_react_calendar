@@ -1,0 +1,59 @@
+.modal-delete {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &__content {
+    position: relative;
+    top: 0px;
+    left: 0px;
+    background: #fff;
+    padding: 16px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+  }
+}
+
+.overlay-delete {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #cccccc45;
+  z-index: 10;
+}
+
+.delete-event {
+  display: flex;
+  flex-direction: column;
+
+  &__close-btn {
+    margin-left: auto;
+    transform: rotate(45deg) scale(2);
+    outline: none;
+    border: none;
+    cursor: pointer;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    background: transparent;
+  }
+
+  &__btn {
+    margin: 8px;
+    margin-left: auto;
+    border: none;
+    color: #fff;
+    background-color: red;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+
+  &__btn-icon {
+    margin-right: 10px;
+  }
+}

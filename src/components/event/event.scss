@@ -6,6 +6,7 @@
   border-radius: 8px;
   padding: 8px;
   color: #fff;
+  cursor: pointer;
 
   &__title {
     width: 100%;
@@ -14,6 +15,7 @@
     white-space: nowrap;
     margin-bottom: 8px;
   }
+
   &:hover {
     font-weight: bold;
     background-color: red;

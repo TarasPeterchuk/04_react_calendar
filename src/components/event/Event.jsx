@@ -1,5 +1,5 @@
 import React from 'react';
-
+import ModalDelete from '../modalDelete/ModalDelete';
 import './event.scss';
 
 const Event = ({
@@ -10,23 +10,34 @@ const Event = ({
   deleteEvent,
   id,
   fetchEvents,
+  appState,
+  setAppState,
 }) => {
   const eventStyle = {
     height,
     marginTop,
   };
-
+  const { showDeleteModal } = appState;
   return (
-    <div style={eventStyle} className="event">
-      <button
-        onClick={() => deleteEvent(id).then(() => fetchEvents())}
-        className="delete-event-btn"
+    <>
+      <div
+        style={eventStyle}
+        className="event"
+        onClick={() => setAppState({ ...appState, showDeleteModal: true })}
       >
-        +
-      </button>
-      <div className="event__title">{title}</div>
-      <div className="event__time">{time}</div>
-    </div>
+        <div className="event__title">{title}</div>
+        <div className="event__time">{time}</div>
+      </div>
+      {showDeleteModal && (
+        <ModalDelete
+          setAppState={setAppState}
+          appState={appState}
+          deleteEvent={deleteEvent}
+          fetchEvents={fetchEvents}
+          id={id}
+        />
+      )}
+    </>
   );
 };
 

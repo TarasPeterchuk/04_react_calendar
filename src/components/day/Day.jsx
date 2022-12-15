@@ -1,22 +1,29 @@
 import React from 'react';
 import Hour from '../hour/Hour';
+import RedLineHour from '../redLineHour/RedLineHour';
 
-import './day.scss';
-
-const Day = ({ dataDay, dayEvents, deleteEvent, fetchEvents }) => {
-  console.log(dataDay);
+const Day = ({
+  weekDay,
+  dataDay,
+  dayEvents,
+  deleteEvent,
+  fetchEvents,
+  currentDate,
+  appState,
+  setAppState,
+}) => {
   const hours = Array(24)
     .fill()
     .map((val, index) => index);
-
   return (
     <div className="calendar__day" data-day={dataDay}>
+      {weekDay.setHours(0, 0, 0, 0) === new Date().setHours(0, 0, 0, 0) && (
+        <RedLineHour />
+      )}
       {hours.map((hour) => {
-        //getting all events from the day we will render
         const hourEvents = dayEvents.filter(
           (event) => event.dateFrom.getHours() === hour
         );
-
         return (
           <Hour
             key={dataDay + hour}
@@ -24,6 +31,9 @@ const Day = ({ dataDay, dayEvents, deleteEvent, fetchEvents }) => {
             hourEvents={hourEvents}
             deleteEvent={deleteEvent}
             fetchEvents={fetchEvents}
+            currentDate={currentDate}
+            appState={appState}
+            setAppState={setAppState}
           />
         );
       })}

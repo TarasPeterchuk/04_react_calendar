@@ -1,7 +1,7 @@
-import React, { Component, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import Header from './components/header/Header.jsx';
 import Calendar from './components/calendar/Calendar.jsx';
-import Modal from './components/modal/Modal';
+import ModalCreate from './components/modalCreate/ModalCreate';
 import { deleteEvent, createEvent, fetchEventsList } from './gateway/events';
 import { getWeekStartDate, generateWeekRange } from '../src/utils/dateUtils.js';
 import './common.scss';
@@ -10,22 +10,24 @@ const App = () => {
   const [appState, setAppState] = useState({
     currentDate: new Date(),
     showModal: false,
+    showDeleteModal: false,
     events: [],
   });
-
   const { events, currentDate, showModal } = appState;
   const weekDates = generateWeekRange(getWeekStartDate(currentDate));
-
   useEffect(() => {
     fetchEvents();
   }, []);
-
   const fetchEvents = () => {
     fetchEventsList().then((events) =>
-      setAppState({ ...appState, events, showModal: false })
+      setAppState({
+        ...appState,
+        events,
+        showModal: false,
+        showDeleteModal: false,
+      })
     );
   };
-
   return (
     <>
       <Header
@@ -38,9 +40,12 @@ const App = () => {
         events={events}
         deleteEvent={deleteEvent}
         fetchEvents={fetchEvents}
+        currentDate={currentDate}
+        appState={appState}
+        setAppState={setAppState}
       />
       {showModal && (
-        <Modal
+        <ModalCreate
           setAppState={setAppState}
           appState={appState}
           createEvent={createEvent}
@@ -50,22 +55,5 @@ const App = () => {
     </>
   );
 };
-
-// class App1 extends Component {
-//   state = {
-//     weekStartDate: new Date(),
-//   };
-
-//   render() {
-//     const { weekStartDate } = this.state;
-//     const weekDates = generateWeekRange(getWeekStartDate(weekStartDate));
-//     return (
-//       <>
-//         <Header />
-//         <Calendar weekDates={weekDates} />
-//       </>
-//     );
-//   }
-// }
 
 export default App;

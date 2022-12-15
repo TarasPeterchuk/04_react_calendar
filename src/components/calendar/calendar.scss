@@ -37,7 +37,7 @@
   }
 
   &__time-slot {
-    height: 59px;
+    height: 60px;
     position: relative;
     border-bottom: 1px solid #eee;
   }
@@ -63,10 +63,17 @@
   &__day-number {
     font-size: 22px;
   }
+
+  &__day-number_active {
+    color: white;
+    opacity: 1 !important;
+    background-color: cornflowerblue;
+    border-radius: 8px;
+  }
 }
 
 .red-line {
-  position: absolute;
+  position: relative;
   width: 100%;
   border-top: 2px solid red;
   z-index: 5;

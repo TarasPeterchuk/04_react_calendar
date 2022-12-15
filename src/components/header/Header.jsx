@@ -1,10 +1,5 @@
-import React, { Component, useState, useEffect } from 'react';
-import {
-  getWeekStartDate,
-  generateWeekRange,
-  months,
-} from '../../utils/dateUtils.js';
-
+import React from 'react';
+import { months } from '../../utils/dateUtils.js';
 import './header.scss';
 
 const Header = ({ setAppState, weekDates, appState }) => {
@@ -22,7 +17,11 @@ const Header = ({ setAppState, weekDates, appState }) => {
     <header className="header">
       <button
         onClick={() => {
-          setAppState({ ...appState, showModal: true });
+          setAppState({
+            ...appState,
+            currentDate: new Date(),
+            showModal: true,
+          });
         }}
         className="button create-event-btn"
       >
