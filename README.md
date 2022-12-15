@@ -2,7 +2,7 @@
 
 ### [Site link](https://harmonious-centaur-cde4e5.netlify.app/)
 
-package.json _contains all modules are needed_ <br />
+`package.json` _contains all modules are needed_ <br />
 npm i _install modules_ <br />
 npm start _view project localy_ <br />
 npm run build _create production product_ <br />
