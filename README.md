@@ -2,10 +2,10 @@
 
 ### [Site link](https://harmonious-centaur-cde4e5.netlify.app/)
 
-`package.json` _contains all modules are needed_ <br />
-`npm i` _install modules_ <br />
-`npm start` _view project localy_ <br />
-`npm run build` _create production product_ <br />
+`package.json` contains all modules are needed
+`npm i` install modules
+`npm start` view project localy
+`npm run build` create production product
 
 Main features:
 
