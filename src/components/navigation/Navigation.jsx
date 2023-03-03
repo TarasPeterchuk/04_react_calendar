@@ -1,8 +1,10 @@
 import React from 'react';
 import ClassNames from 'classnames';
 import { days } from '../../utils/dateUtils.js';
+import { generateWeekRange } from '../../utils/dateUtils.js';
 
-const Navigation = ({ weekDates }) => {
+const Navigation = ({ currentStartWeekDate }) => {
+  const weekDates = generateWeekRange(currentStartWeekDate);
   return (
     <header className="calendar__header ">
       {weekDates.map((dayDate) => (

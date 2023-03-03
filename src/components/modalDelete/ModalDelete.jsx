@@ -1,15 +1,20 @@
 import React from 'react';
+import { deleteEvent } from '../../gateway/events';
 import './modalDelete.scss';
 
 const ModalDelete = ({
+  id,
   setAppState,
   appState,
+  mousePosition,
   fetchEvents,
-  deleteEvent,
-  id,
 }) => {
-  const { clickCoordinates } = appState;
-  console.log(clickCoordinates);
+  const { pageX, pageY } = mousePosition;
+
+  const onDelete = (eventId) => {
+    deleteEvent(eventId).then(() => fetchEvents());
+  };
+
   return (
     <div
       className="modal-delete overlay-delete"
@@ -18,7 +23,7 @@ const ModalDelete = ({
       }}
     >
       <div
-        style={{ top: clickCoordinates.yCoord, left: clickCoordinates.xCoord }}
+        style={{ top: pageY, left: pageX }}
         className="modal-delete__content"
         onClick={(event) => event.stopPropagation()}
       >
@@ -26,7 +31,7 @@ const ModalDelete = ({
           <button
             type="submit"
             className="delete-event__btn"
-            onClick={() => deleteEvent(id).then(() => fetchEvents())}
+            onClick={() => onDelete(id)}
           >
             <i
               className="delete-event__btn-icon fa fa-trash"

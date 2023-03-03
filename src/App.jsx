@@ -2,55 +2,50 @@ import React, { useState, useEffect } from 'react';
 import Header from './components/header/Header.jsx';
 import Calendar from './components/calendar/Calendar.jsx';
 import ModalCreate from './components/modalCreate/ModalCreate';
-import { deleteEvent, createEvent, fetchEventsList } from './gateway/events';
-import { getWeekStartDate, generateWeekRange } from '../src/utils/dateUtils.js';
+import { fetchEventsList } from './gateway/events';
+import { getWeekStartDate } from '../src/utils/dateUtils.js';
 import './common.scss';
 
 const App = () => {
   const [appState, setAppState] = useState({
-    currentDate: new Date(),
-    showModal: false,
+    currentStartWeekDate: getWeekStartDate(new Date()),
+    showCreateModal: false,
     showDeleteModal: false,
-    clickCoordinates: {},
-    events: [],
+    selectedEvent: null,
   });
 
-  const { events, currentDate, showModal } = appState;
-  const weekDates = generateWeekRange(getWeekStartDate(currentDate));
+  const [events, setEvents] = useState([]);
+
+  const { showCreateModal } = appState;
+
   useEffect(() => {
     fetchEvents();
   }, []);
+
   const fetchEvents = () => {
-    fetchEventsList().then((events) =>
+    fetchEventsList().then((events) => {
       setAppState({
         ...appState,
-        events,
-        showModal: false,
+        showCreateModal: false,
         showDeleteModal: false,
-      })
-    );
+      });
+      setEvents(events);
+    });
   };
+
   return (
     <>
-      <Header
-        setAppState={setAppState}
-        appState={appState}
-        weekDates={weekDates}
-      />
+      <Header setAppState={setAppState} appState={appState} />
       <Calendar
-        weekDates={weekDates}
         events={events}
-        deleteEvent={deleteEvent}
         fetchEvents={fetchEvents}
-        currentDate={currentDate}
         appState={appState}
         setAppState={setAppState}
       />
-      {showModal && (
+      {showCreateModal && (
         <ModalCreate
           setAppState={setAppState}
           appState={appState}
-          createEvent={createEvent}
           fetchEvents={fetchEvents}
         />
       )}

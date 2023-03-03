@@ -1,14 +1,14 @@
-import React, { Component, useState } from 'react';
+import React, { useState } from 'react';
+import { createEvent } from '../../gateway/events';
 import moment from 'moment';
 import './modalCreate.scss';
 
-const ModalCreate = ({ setAppState, appState, createEvent, fetchEvents }) => {
-  const { currentDate } = appState;
+const ModalCreate = ({ setAppState, appState, fetchEvents }) => {
   const [formData, formChange] = useState({
     title: '',
-    date: moment(currentDate).format('YYYY-MM-DD'),
-    startTime: moment(currentDate).format('HH:mm'),
-    endTime: moment(currentDate).add(1, 'hours').format('H:mm'),
+    date: moment().format('YYYY-MM-DD'),
+    startTime: moment().format('HH:mm'),
+    endTime: moment().add(1, 'hours').format('H:mm'),
     description: '',
   });
   const { title, date, startTime, endTime, description } = formData;
@@ -32,7 +32,7 @@ const ModalCreate = ({ setAppState, appState, createEvent, fetchEvents }) => {
         <div className="create-event">
           <button
             onClick={() => {
-              setAppState({ ...appState, showModal: false });
+              setAppState({ ...appState, showCreateModal: false });
             }}
             className="create-event__close-btn"
           >

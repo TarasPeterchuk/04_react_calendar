@@ -2,14 +2,7 @@ import React from 'react';
 import Event from '../event/Event';
 import { formatMins } from '../../../src/utils/dateUtils.js';
 
-const Hour = ({
-  dataHour,
-  hourEvents,
-  deleteEvent,
-  fetchEvents,
-  appState,
-  setAppState,
-}) => {
+const Hour = ({ dataHour, hourEvents, fetchEvents, appState, setAppState }) => {
   return (
     <div className="calendar__time-slot" data-time={dataHour + 1}>
       {hourEvents.map(({ id, dateFrom, dateTo, title }) => {
@@ -27,7 +20,6 @@ const Hour = ({
             time={`${eventStart} - ${eventEnd}`}
             title={title}
             id={id}
-            deleteEvent={deleteEvent}
             fetchEvents={fetchEvents}
             appState={appState}
             setAppState={setAppState}

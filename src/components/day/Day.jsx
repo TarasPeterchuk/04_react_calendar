@@ -6,7 +6,6 @@ const Day = ({
   weekDay,
   dataDay,
   dayEvents,
-  deleteEvent,
   fetchEvents,
   currentDate,
   appState,
@@ -29,7 +28,6 @@ const Day = ({
             key={dataDay + hour}
             dataHour={hour}
             hourEvents={hourEvents}
-            deleteEvent={deleteEvent}
             fetchEvents={fetchEvents}
             currentDate={currentDate}
             appState={appState}

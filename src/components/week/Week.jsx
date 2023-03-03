@@ -1,16 +1,10 @@
 import React from 'react';
 import Day from '../day/Day';
 import './week.scss';
+import { generateWeekRange } from '../../utils/dateUtils.js';
 
-const Week = ({
-  weekDates,
-  events,
-  deleteEvent,
-  fetchEvents,
-  currentDate,
-  appState,
-  setAppState,
-}) => {
+const Week = ({ events, fetchEvents, currentDate, appState, setAppState }) => {
+  const weekDates = generateWeekRange(appState.currentStartWeekDate);
   return (
     <div className="calendar__week">
       {weekDates.map((dayStart) => {
@@ -26,7 +20,6 @@ const Week = ({
             weekDay={dayStart}
             dataDay={dayStart.getDate()}
             dayEvents={dayEvents}
-            deleteEvent={deleteEvent}
             fetchEvents={fetchEvents}
             currentDate={currentDate}
             appState={appState}

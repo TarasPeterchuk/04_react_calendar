@@ -1,9 +1,11 @@
 import React from 'react';
 import { months } from '../../utils/dateUtils.js';
+import { getWeekStartDate, generateWeekRange } from '../../utils/dateUtils.js';
 import './header.scss';
 
-const Header = ({ setAppState, weekDates, appState }) => {
-  const { currentDate } = appState;
+const Header = ({ setAppState, appState }) => {
+  const { currentStartWeekDate } = appState;
+  const weekDates = generateWeekRange(currentStartWeekDate);
   const showMonths = () =>
     weekDates[0].getMonth() === weekDates[weekDates.length - 1].getMonth()
       ? months[weekDates[0].getMonth()].substr(0, 3)
@@ -19,8 +21,7 @@ const Header = ({ setAppState, weekDates, appState }) => {
         onClick={() => {
           setAppState({
             ...appState,
-            currentDate: new Date(),
-            showModal: true,
+            showCreateModal: true,
           });
         }}
         className="button create-event-btn"
@@ -30,7 +31,10 @@ const Header = ({ setAppState, weekDates, appState }) => {
       <div className="navigation">
         <button
           onClick={() => {
-            setAppState({ ...appState, currentDate: new Date() });
+            setAppState({
+              ...appState,
+              currentStartWeekDate: getWeekStartDate(new Date()),
+            });
           }}
           className="navigation__today-btn button"
         >
@@ -40,8 +44,8 @@ const Header = ({ setAppState, weekDates, appState }) => {
           onClick={() => {
             setAppState({
               ...appState,
-              currentDate: new Date(
-                currentDate.setDate(currentDate.getDate() - 7)
+              currentStartWeekDate: new Date(
+                currentStartWeekDate.setDate(currentStartWeekDate.getDate() - 7)
               ),
             });
           }}
@@ -53,8 +57,8 @@ const Header = ({ setAppState, weekDates, appState }) => {
           onClick={() => {
             setAppState({
               ...appState,
-              currentDate: new Date(
-                currentDate.setDate(currentDate.getDate() + 7)
+              currentStartWeekDate: new Date(
+                currentStartWeekDate.setDate(currentStartWeekDate.getDate() + 7)
               ),
             });
           }}
