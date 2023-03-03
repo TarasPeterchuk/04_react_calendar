@@ -14,6 +14,7 @@ const App = () => {
     clickCoordinates: {},
     events: [],
   });
+
   const { events, currentDate, showModal } = appState;
   const weekDates = generateWeekRange(getWeekStartDate(currentDate));
   useEffect(() => {

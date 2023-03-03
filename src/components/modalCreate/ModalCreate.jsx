@@ -6,8 +6,8 @@ const ModalCreate = ({ setAppState, appState, createEvent, fetchEvents }) => {
   const { currentDate } = appState;
   const [formData, formChange] = useState({
     title: '',
-    date: moment(currentDate).format('YYYY-M-D'),
-    startTime: moment(currentDate).format('H:mm'),
+    date: moment(currentDate).format('YYYY-MM-DD'),
+    startTime: moment(currentDate).format('HH:mm'),
     endTime: moment(currentDate).add(1, 'hours').format('H:mm'),
     description: '',
   });

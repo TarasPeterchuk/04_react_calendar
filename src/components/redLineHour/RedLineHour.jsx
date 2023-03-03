@@ -9,8 +9,11 @@ const RedLine = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setRedLineMarginTop(moment().minutes() + moment().hours() * 60);
-      return interval;
+      return () => {
+        clearInterval(interval);
+      };
     }, 60000);
+    return;
   }, []);
   return (
     <div
