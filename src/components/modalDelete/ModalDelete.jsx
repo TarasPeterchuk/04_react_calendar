@@ -15,7 +15,6 @@ const ModalDelete = ({
     setAppState({
       ...appState,
       showDeleteModal: false,
-      renderFlag: !appState.renderFlag,
     });
     deleteEvent(eventId).then(() => fetchEvents());
   };

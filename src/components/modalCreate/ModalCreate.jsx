@@ -21,7 +21,6 @@ const ModalCreate = ({ setAppState, appState, fetchEvents }) => {
     setAppState({
       ...appState,
       showCreateModal: false,
-      renderFlag: !appState.renderFlag,
     });
     const newEvent = {
       title,
