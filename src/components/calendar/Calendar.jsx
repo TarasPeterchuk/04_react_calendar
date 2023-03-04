@@ -5,13 +5,14 @@ import Sidebar from '../sidebar/Sidebar';
 import './calendar.scss';
 
 const Calendar = ({ setAppState, appState }) => {
+  const { currentStartWeekDate } = appState;
   return (
     <section className="calendar">
-      <Navigation currentStartWeekDate={appState.currentStartWeekDate} />
+      <Navigation currentStartWeekDate={currentStartWeekDate} />
       <div className="calendar__body">
         <div className="calendar__week-container">
           <Sidebar />
-          <Week appState={appState} setAppState={setAppState} />
+          <Week {...setAppState} {...appState} />
         </div>
       </div>
     </section>

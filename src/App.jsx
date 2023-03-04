@@ -14,8 +14,8 @@ const App = () => {
 
   return (
     <>
-      <Header setAppState={setAppState} appState={appState} />
-      <Calendar appState={appState} setAppState={setAppState} />
+      <Header {...setAppState} {...appState} />
+      <Calendar {...setAppState} {...appState} />
     </>
   );
 };
