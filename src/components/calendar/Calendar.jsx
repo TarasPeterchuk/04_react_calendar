@@ -4,19 +4,14 @@ import Week from '../week/Week';
 import Sidebar from '../sidebar/Sidebar';
 import './calendar.scss';
 
-const Calendar = ({ setAppState, events, fetchEvents, appState }) => {
+const Calendar = ({ setAppState, appState }) => {
   return (
     <section className="calendar">
       <Navigation currentStartWeekDate={appState.currentStartWeekDate} />
       <div className="calendar__body">
         <div className="calendar__week-container">
           <Sidebar />
-          <Week
-            events={events}
-            fetchEvents={fetchEvents}
-            appState={appState}
-            setAppState={setAppState}
-          />
+          <Week appState={appState} setAppState={setAppState} />
         </div>
       </div>
     </section>

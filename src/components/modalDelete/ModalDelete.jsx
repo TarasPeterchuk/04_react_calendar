@@ -12,6 +12,11 @@ const ModalDelete = ({
   const { pageX, pageY } = mousePosition;
 
   const onDelete = (eventId) => {
+    setAppState({
+      ...appState,
+      showDeleteModal: false,
+      renderFlag: !appState.renderFlag,
+    });
     deleteEvent(eventId).then(() => fetchEvents());
   };
 

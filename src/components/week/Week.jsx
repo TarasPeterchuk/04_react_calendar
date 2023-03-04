@@ -1,10 +1,26 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Day from '../day/Day';
+import ModalCreate from '../modalCreate/ModalCreate';
+import { fetchEventsList } from '../../gateway/events';
 import './week.scss';
 import { generateWeekRange } from '../../utils/dateUtils.js';
 
-const Week = ({ events, fetchEvents, currentDate, appState, setAppState }) => {
+const Week = ({ currentDate, appState, setAppState }) => {
+  const [events, setEvents] = useState([]);
+
   const weekDates = generateWeekRange(appState.currentStartWeekDate);
+  const { showCreateModal } = appState;
+
+  useEffect(() => {
+    fetchEvents();
+  }, []);
+
+  const fetchEvents = () => {
+    fetchEventsList().then((events) => {
+      setEvents(events);
+    });
+  };
+
   return (
     <div className="calendar__week">
       {weekDates.map((dayStart) => {
@@ -27,6 +43,13 @@ const Week = ({ events, fetchEvents, currentDate, appState, setAppState }) => {
           />
         );
       })}
+      {showCreateModal && (
+        <ModalCreate
+          setAppState={setAppState}
+          appState={appState}
+          fetchEvents={fetchEvents}
+        />
+      )}
     </div>
   );
 };

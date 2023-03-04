@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { createEvent } from '../../gateway/events';
+import { createEvent, fetchEventsList } from '../../gateway/events';
 import moment from 'moment';
 import './modalCreate.scss';
 
@@ -18,6 +18,11 @@ const ModalCreate = ({ setAppState, appState, fetchEvents }) => {
   };
   const handleSubmit = (event) => {
     event.preventDefault();
+    setAppState({
+      ...appState,
+      showCreateModal: false,
+      renderFlag: !appState.renderFlag,
+    });
     const newEvent = {
       title,
       description,
