@@ -12,7 +12,7 @@ const Calendar = ({ setAppState, appState }) => {
       <div className="calendar__body">
         <div className="calendar__week-container">
           <Sidebar />
-          <Week {...setAppState} {...appState} />
+          <Week appState={appState} setAppState={setAppState} />
         </div>
       </div>
     </section>
