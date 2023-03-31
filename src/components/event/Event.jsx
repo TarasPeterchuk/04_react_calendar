@@ -1,17 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import ModalDelete from '../modalDelete/ModalDelete';
 import './event.scss';
 
-const Event = ({
-  height,
-  marginTop,
-  title,
-  time,
-  id,
-  appState,
-  setAppState,
-  fetchEvents,
-}) => {
+const Event = ({ height, marginTop, title, time, id, appState, setAppState, fetchEvents }) => {
   const eventStyle = {
     height,
     marginTop,
@@ -19,7 +11,7 @@ const Event = ({
 
   const [mousePosition, setMousePosition] = useState({ x: null, y: null });
 
-  const handleMouseMove = (event) => {
+  const handleMouseMove = event => {
     const { pageX, pageY } = event;
     setMousePosition({ pageX, pageY });
   };
@@ -53,6 +45,17 @@ const Event = ({
       )}
     </>
   );
+};
+
+Event.propTypes = {
+  height: PropTypes.number.isRequired,
+  marginTop: PropTypes.number.isRequired,
+  title: PropTypes.string.isRequired,
+  time: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
+  setAppState: PropTypes.func.isRequired,
+  appState: PropTypes.object.isRequired,
+  fetchEvents: PropTypes.func.isRequired,
 };
 
 export default Event;

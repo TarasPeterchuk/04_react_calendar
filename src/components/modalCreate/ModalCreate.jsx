@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { createEvent, fetchEventsList } from '../../gateway/events';
+import PropTypes from 'prop-types';
 import moment from 'moment';
+import { createEvent } from '../../gateway/events';
 import './modalCreate.scss';
 
 const ModalCreate = ({ setAppState, appState, fetchEvents }) => {
@@ -12,11 +13,11 @@ const ModalCreate = ({ setAppState, appState, fetchEvents }) => {
     description: '',
   });
   const { title, date, startTime, endTime, description } = formData;
-  const handleChange = (event) => {
+  const handleChange = event => {
     const { name, value } = event.target;
     formChange({ ...formData, [name]: value });
   };
-  const handleSubmit = (event) => {
+  const handleSubmit = event => {
     event.preventDefault();
     setAppState({
       ...appState,
@@ -92,6 +93,12 @@ const ModalCreate = ({ setAppState, appState, fetchEvents }) => {
       </div>
     </div>
   );
+};
+
+ModalCreate.propTypes = {
+  setAppState: PropTypes.func.isRequired,
+  appState: PropTypes.object.isRequired,
+  fetchEvents: PropTypes.func.isRequired,
 };
 
 export default ModalCreate;

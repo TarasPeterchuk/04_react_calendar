@@ -1,6 +1,6 @@
 import React from 'react';
-import { months } from '../../utils/dateUtils.js';
-import { getWeekStartDate, generateWeekRange } from '../../utils/dateUtils.js';
+import PropTypes from 'prop-types';
+import { months, getWeekStartDate, generateWeekRange } from '../../utils/dateUtils.js';
 import './header.scss';
 
 const Header = ({ setAppState, appState }) => {
@@ -11,10 +11,7 @@ const Header = ({ setAppState, appState }) => {
       ? months[weekDates[0].getMonth()].substr(0, 3)
       : months[weekDates[0].getMonth()]
           .substr(0, 3)
-          .concat(
-            ' - ',
-            months[weekDates[weekDates.length - 1].getMonth()].substr(0, 3)
-          );
+          .concat(' - ', months[weekDates[weekDates.length - 1].getMonth()].substr(0, 3));
   return (
     <header className="header">
       <button
@@ -45,7 +42,7 @@ const Header = ({ setAppState, appState }) => {
             setAppState({
               ...appState,
               currentStartWeekDate: new Date(
-                currentStartWeekDate.setDate(currentStartWeekDate.getDate() - 7)
+                currentStartWeekDate.setDate(currentStartWeekDate.getDate() - 7),
               ),
             });
           }}
@@ -58,7 +55,7 @@ const Header = ({ setAppState, appState }) => {
             setAppState({
               ...appState,
               currentStartWeekDate: new Date(
-                currentStartWeekDate.setDate(currentStartWeekDate.getDate() + 7)
+                currentStartWeekDate.setDate(currentStartWeekDate.getDate() + 7),
               ),
             });
           }}
@@ -70,6 +67,11 @@ const Header = ({ setAppState, appState }) => {
       </div>
     </header>
   );
+};
+
+Header.propTypes = {
+  setAppState: PropTypes.func.isRequired,
+  appState: PropTypes.object.isRequired,
 };
 
 export default Header;

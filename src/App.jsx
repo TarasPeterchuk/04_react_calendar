@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Header from './components/header/Header.jsx';
 import Calendar from './components/calendar/Calendar.jsx';
-import { getWeekStartDate } from '../src/utils/dateUtils.js';
+import { getWeekStartDate } from './utils/dateUtils.js';
 import './common.scss';
 
 const App = () => {
@@ -11,6 +11,8 @@ const App = () => {
     showDeleteModal: false,
     selectedEvent: null,
   });
+
+  const { currentStartWeekDate, showCreateModal, showDeleteModal, selectedEvent } = appState;
 
   return (
     <>
